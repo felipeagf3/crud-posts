@@ -18,7 +18,7 @@ const postController = {
 
         // Query SQL para inserir uma nova postagem.
         // Adicionamos 'username' na lista de colunas e nos placeholders.
-        const sql = INSERT INTO posts (title, content, username, type, url) VALUES (?, ?, ?, ?, ?);
+        const sql = 'INSERT INTO posts (title, content, username, type, url) VALUES (?, ?, ?, ?, ?)';
         // db.run executa a query e o callback é chamado após a conclusão
         db.run(sql, [title, content, username, type, url], function(err) {
             if (err) {
@@ -33,7 +33,7 @@ const postController = {
     // 2. READ (All): Retorna todas as postagens do banco de dados
     getAllPosts: (req, res) => {
         // A query para selecionar todas as postagens já vai incluir o 'username' automaticamente
-        const sql = SELECT * FROM posts ORDER BY createdAt DESC;
+        const sql = 'SELECT * FROM posts ORDER BY createdAt DESC';
         db.all(sql, [], (err, rows) => {
             if (err) {
                 console.error('Erro ao buscar postagens:', err.message);
@@ -46,7 +46,7 @@ const postController = {
     // 3. READ (Single): Retorna uma postagem específica por ID
     getPostById: (req, res) => {
         const { id } = req.params;
-        const sql = SELECT * FROM posts WHERE id = ?;
+        const sql = 'SELECT * FROM posts WHERE id = ?';
         db.get(sql, [id], (err, row) => {
             if (err) {
                 console.error('Erro ao buscar postagem por ID:', err.message);
@@ -86,7 +86,7 @@ const postController = {
         params.push(id); // Adiciona o ID ao final dos parâmetros para a cláusula WHERE
 
         // Adiciona updatedAt = CURRENT_TIMESTAMP para registrar a data da atualização
-        const sql = UPDATE posts SET ${fields.join(', ')}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?;
+        const sql = `UPDATE posts SET ${fields.join(', ')}, updatedAt = CURRENT_TIMESTAMP WHERE id = ?`;
 
         db.run(sql, params, function(err) {
             if (err) {
@@ -104,7 +104,7 @@ const postController = {
     // 5. DELETE: Remove uma postagem do banco de dados
     deletePost: (req, res) => {
         const { id } = req.params;
-        const sql = DELETE FROM posts WHERE id = ?; // Query para deletar pelo ID
+        const sql = 'DELETE FROM posts WHERE id = ?'; // Query para deletar pelo ID
 
         db.run(sql, [id], function(err) {
             if (err) {

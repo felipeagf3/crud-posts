@@ -1,7 +1,7 @@
 // routes/posts.js
 const express = require('express'); // Importa o Express
 const router = express.Router();    // Cria um objeto Router do Express
-const postController = require('../controllers/postController'); // Importa o controlador de postagens
+const postController = require('../controllers/postController.js'); // Importa o controlador de postagens
 
 // Define as rotas para as operações CRUD de postagens:
 

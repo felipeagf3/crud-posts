@@ -30,7 +30,8 @@ const db = new sqlite3.Database(dbPath, (err) => {
                 username TEXT NOT NULL,                -- 
                 type TEXT NOT NULL,                    -- Tipo de postagem ('text', 'pdf', 'video')
                 url TEXT,                              -- URL para PDF ou vídeo (pode ser nulo para tipo 'text')
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP -- Data e hora da criação (preenchida automaticamente)
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, -- Data e hora da criação (preenchida automaticamente)
+                updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         `, (err) => {
             if (err) {

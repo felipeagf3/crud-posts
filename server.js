@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
 
 // Inicia o servidor
 app.listen(PORT, () => {
-    console.log('Servidor rodando em http://localhost:${PORT}');
+    console.log(` Servidor rodando em http://localhost:${PORT}`);
     // No primeiro startup, você também verá as mensagens do database.js aqui,
     // indicando a conexão com o SQLite e a criação da tabela.
 });
